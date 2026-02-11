@@ -640,22 +640,16 @@ require('lazy').setup({
       --    :Mason
       --
       -- You can press `g?` for help in this menu.
-      -- Mapping from lspconfig server names to Mason package names
-      -- when they differ. Add entries here if Mason can't find a package.
-      local lsp_to_mason = {
-        ts_ls = 'typescript-language-server',
-      }
-
-      local ensure_installed = {}
-      for server_name, _ in pairs(servers or {}) do
-        table.insert(ensure_installed, lsp_to_mason[server_name] or server_name)
-      end
-      vim.list_extend(ensure_installed, {
-        'lua_ls', -- Lua Language server
-        'stylua', -- Used to format Lua code
+      local ensure_installed = {
+        'basedpyright',
+        'biome',
+        'typescript-language-server',
+        'awk-language-server',
+        'lua-language-server',
+        'stylua',
         'black',
         -- You can add other tools here that you want Mason to install
-      })
+      }
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
